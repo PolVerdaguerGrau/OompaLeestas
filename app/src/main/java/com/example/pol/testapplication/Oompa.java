@@ -33,4 +33,28 @@ public class Oompa {
     public int getId() {
         return id;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Character getGender() {
+        return gender;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }

@@ -6,21 +6,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.pol.testapplication.Interface.DataProviderInterface;
+import com.example.pol.testapplication.Interface.DataProviderService;
 import com.example.pol.testapplication.JSONParser;
 import com.example.pol.testapplication.Oompa;
 
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by pol on 7/22/17.
  */
-public class DataProviderFromJsonLocal implements DataProviderInterface {
+public class DataProviderFromJsonLocal implements DataProviderService {
 
+    //TODO this class shouldn't know about the existance of a class called OOmpa and should only work with strings
     @Override
-    public ArrayList<Oompa> retrieveOompas() {
+    public ArrayList<Oompa> retrieveOompasInformation() {
         JSONParser parser = new JSONParser();
 
         Log.d("inside", "this is inside the data provider");

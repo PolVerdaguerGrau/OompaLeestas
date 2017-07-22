@@ -3,11 +3,16 @@ package com.example.pol.testapplication.Implementation;
 import android.content.Context;
 
 import com.example.pol.testapplication.Interface.OompaRegistrationService;
+import com.example.pol.testapplication.Oompa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -23,7 +28,7 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
 
     protected OompaRegistrationImpl() {
         oompaPool = new HashMap<>();
-        populate();
+        //populate();
     }
 
     private void populate() {
@@ -69,12 +74,34 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
     }
 
     @Override
-    public Map<String, String> getBriefInformationById(int id) {
-        Map<String, String> briefInformation = new HashMap<>();
-        for(BriefFields field  : BriefFields.values()) {
-            briefInformation.put(field.toString(), oompaPool.get(id).get(field));
+    public Map<Integer, Map<String, String>> getBriefInformation() {
+        Map<Integer, Map<String, String>> briefInformation = getDeepCopyInt(oompaPool);
+
+
+        DetailedFields[] detailedFieldset = DetailedFields.values();
+        // initialize with the exact length
+        Set<String> stringDetailed = new HashSet<>();
+        for (DetailedFields detailedField : detailedFieldset) {
+            stringDetailed.add(detailedField.toString());
         }
-        return briefInformation;    }
+        BriefFields[] briefFieldset = BriefFields.values();
+        Set<String> stringBrief = new HashSet<>();
+        for (BriefFields briefFields : briefFieldset) {
+            stringBrief.add(briefFields.toString());
+        }
+        Set<String> excludedKeys = stringDetailed;
+        Set<String> s2 = stringBrief;
+
+        excludedKeys.removeAll(s2);
+
+        for(int key : briefInformation.keySet()) {
+            briefInformation.get(key).keySet().removeAll(excludedKeys);
+        }
+
+       /* for(BriefFields field  : BriefFields.values()) {
+            briefInformation.put(field.toString(), oompaPool.get(id).get(field.toString()));
+        }*/
+         return briefInformation;    }
 
     @Override
     public void registerOompa(String name, String lastName, int id, String email, Character gender, String profession, String thumbnail, String imageUrl) {
@@ -87,5 +114,32 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
         values.put("thumbnail", thumbnail);
         values.put("image", imageUrl);
         oompaPool.put(id, values);
+    }
+
+    @Override
+    public void registerOompa(Oompa oompa) {
+        Map<String, String> values = new HashMap<>();
+        values.put("first_name", oompa.getName());
+        values.put("last_name", oompa.getLastName());
+        values.put("email", oompa.getEmail());
+        values.put("gender", oompa.getGender().toString());
+        values.put("profession", oompa.getProfession());
+        values.put("thumbnail", oompa.getThumbnail());
+        values.put("image", oompa.getImageUrl());
+        oompaPool.put(oompa.getId(), values);
+    }
+
+
+    private Map<Integer, Map<String,String>> getDeepCopyInt(Map<Integer, Map<String,String>> source) {
+        Map<Integer, Map<String,String>> copy = new HashMap<>();
+        for (Map.Entry<Integer, Map<String, String>> entry : source.entrySet())
+            copy.put(entry.getKey(), getDeepCopy(entry.getValue()));
+        return copy;
+    }
+    private Map<String, String> getDeepCopy(Map<String, String> source) {
+        Map<String, String> copy = new HashMap<>();
+        for (Map.Entry<String, String> entry : source.entrySet())
+            copy.put(entry.getKey(), entry.getValue());
+        return copy;
     }
 }

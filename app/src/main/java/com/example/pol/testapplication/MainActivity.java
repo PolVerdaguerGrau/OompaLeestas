@@ -1,11 +1,8 @@
 package com.example.pol.testapplication;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -22,8 +19,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pol.testapplication.Implementation.DataProviderFromJsonLocal;
-import com.example.pol.testapplication.Interface.DataProviderInterface;
+import com.example.pol.testapplication.Interface.DataProviderService;
+import com.example.pol.testapplication.Interface.OompaRegistrationService;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -33,6 +30,16 @@ public class MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
         findViewById(R.id.my_button).setOnClickListener(this);
+        new LongRunningGetIO().execute();
+        //TODO treure aquesta xapussa dáqui
+        try {
+            Log.d("time", "AAAA");
+            Thread.sleep(10000);
+            Log.d("time", "BBBBB");
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Intent i = new Intent(this, OompasListActivity.class);
         startActivity(i);
     }
@@ -41,7 +48,6 @@ public class MainActivity extends Activity implements OnClickListener {
     public void onClick(View arg0) {
         Button b = (Button) findViewById(R.id.my_button);
         b.setClickable(false);
-        new LongRunningGetIO().execute();
 
     }
 
@@ -49,13 +55,17 @@ public class MainActivity extends Activity implements OnClickListener {
 
         @Override
         protected String doInBackground(Void... params) {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpContext localContext = new BasicHttpContext();
-            HttpGet httpGet = new HttpGet("http://www.cheesejedi.com/rest_services/get_big_cheese.php?puzzle=1");
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpContext localContext = new BasicHttpContext();
+                HttpGet httpGet = new HttpGet("http://www.cheesejedi.com/rest_services/get_big_cheese.php?puzzle=1");
             String text = "Please wait";
-            DataProviderFromJsonLocal dataProvider = new DataProviderFromJsonLocal();
+            DataProviderService dataProvider = ServiceDataProviderFactory.getLocalService();
             Log.d("main activity", "This is before entering the data provider");
-            oompas = dataProvider.retrieveOompas();
+            oompas = dataProvider.retrieveOompasInformation();
+            OompaRegistrationService oompaRegistrator = ServiceRegistrationFactory.getLocalService();
+            for(Oompa oompa : oompas) {
+                oompaRegistrator.registerOompa(oompa);
+            }
             text = oompas.isEmpty() ? "No Oompas found" : "Done";
             return text;
         }

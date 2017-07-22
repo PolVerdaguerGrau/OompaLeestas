@@ -7,8 +7,8 @@ import java.util.ArrayList;
 /**
  * Created by pol on 7/22/17.
  */
-public interface DataProviderInterface {
+public interface DataProviderService {
 
-    public ArrayList<Oompa> retrieveOompas();
+    public ArrayList<Oompa> retrieveOompasInformation();
 
 }

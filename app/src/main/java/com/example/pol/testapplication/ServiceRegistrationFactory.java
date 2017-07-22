@@ -6,8 +6,8 @@ import com.example.pol.testapplication.Interface.OompaRegistrationService;
 /**
  * Created by pol on 7/22/17.
  */
-public class ServiceFactory {
-    private ServiceFactory() {}
+public class ServiceRegistrationFactory {
+    private ServiceRegistrationFactory() {}
 
     private OompaRegistrationService service;
 

@@ -1,6 +1,5 @@
 package com.example.pol.testapplication;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,16 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.pol.testapplication.Implementation.OompaRegistrationImpl;
 import com.example.pol.testapplication.Interface.OompaRegistrationService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import javax.inject.Inject;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -36,11 +31,11 @@ public class DetailActivity extends AppCompatActivity {
 
         //// TODO: 7/22/17 Now this uses a singleton but it should be using injection
 
-        oompaRegistrationService = ServiceFactory.getLocalService();
+        oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
 
         List<String> items = new ArrayList<>();
 
-        oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id")));
+        int idToLookFor = Integer.valueOf(getIntent().getStringExtra("id"));
         Set<String> keySet = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
         for (String id : keySet) {
             items.add(oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
