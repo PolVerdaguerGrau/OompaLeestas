@@ -24,4 +24,12 @@ public class Oompa {
         this.thumbnail = thumbnail;
         this.imageUrl = imageUrl;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

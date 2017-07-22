@@ -13,6 +13,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,8 @@ public class MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
         findViewById(R.id.my_button).setOnClickListener(this);
+        Intent i = new Intent(this, OompasListActivity.class);
+        startActivity(i);
     }
 
     @Override

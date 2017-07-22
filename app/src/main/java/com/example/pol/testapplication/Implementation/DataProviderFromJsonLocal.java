@@ -30,7 +30,7 @@ public class DataProviderFromJsonLocal implements DataProviderInterface {
             JSONObject oompaJSON = null;
             try {
                 oompaJSON = oompasJSONList.getJSONObject(i);
-                System.out.println(oompaJSON.getString("first_name"));
+                //System.out.println(oompaJSON.getString("first_name"));
                 oompaList.add(new Oompa(oompaJSON.getString("first_name"), oompaJSON.getString("last_name"),oompaJSON.getInt("id"),oompaJSON.getString("email"), oompaJSON.getString("gender").charAt(0),oompaJSON.getString("profession"),oompaJSON.getString("thumbnail"),oompaJSON.getString("image")));
             } catch (JSONException e) {
                 e.printStackTrace();
