@@ -1,8 +1,7 @@
-package com.example.pol.testapplication.Interface;
+package com.example.pol.testapplication.Interfaces;
 
 import com.example.pol.testapplication.Oompa;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**

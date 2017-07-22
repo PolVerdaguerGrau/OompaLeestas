@@ -1,6 +1,5 @@
 package com.example.pol.testapplication;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import org.apache.http.client.HttpClient;
@@ -19,8 +18,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pol.testapplication.Interface.DataProviderService;
-import com.example.pol.testapplication.Interface.OompaRegistrationService;
+import com.example.pol.testapplication.Factories.ServiceDataProviderFactory;
+import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
+import com.example.pol.testapplication.Interfaces.DataProviderService;
+import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
 public class MainActivity extends Activity implements OnClickListener {
 

@@ -1,21 +1,12 @@
-package com.example.pol.testapplication.Implementation;
+package com.example.pol.testapplication.Implementations;
 
-import android.content.Context;
-
-import com.example.pol.testapplication.Interface.OompaRegistrationService;
+import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 import com.example.pol.testapplication.Oompa;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Created by pol on 7/22/17.
@@ -28,24 +19,8 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
 
     protected OompaRegistrationImpl() {
         oompaPool = new HashMap<>();
-        //populate();
     }
 
-    private void populate() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("first_name", "POL");
-        map.put("last_name", "VERDAGUER");
-        map.put("email", "this@ismyemail.com");
-        map.put("profession", "professor");
-        oompaPool.put(1,map);
-
-        HashMap<String, String> map2 = new HashMap<>();
-        map2.put("first_name", "NURIA");
-        map2.put("last_name", "AUMI");
-        map2.put("email", "this@gmail.com");
-        map2.put("profession", "trapesist");
-        oompaPool.put(2,map2);
-    }
     public static OompaRegistrationImpl getInstance() {
         if(instance == null) {
             instance = new OompaRegistrationImpl();

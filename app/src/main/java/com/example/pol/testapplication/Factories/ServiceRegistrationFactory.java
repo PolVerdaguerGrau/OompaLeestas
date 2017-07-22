@@ -1,7 +1,7 @@
-package com.example.pol.testapplication;
+package com.example.pol.testapplication.Factories;
 
-import com.example.pol.testapplication.Implementation.OompaRegistrationImpl;
-import com.example.pol.testapplication.Interface.OompaRegistrationService;
+import com.example.pol.testapplication.Implementations.OompaRegistrationImpl;
+import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
 /**
  * Created by pol on 7/22/17.

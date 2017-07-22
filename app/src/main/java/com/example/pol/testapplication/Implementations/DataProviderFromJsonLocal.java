@@ -1,4 +1,4 @@
-package com.example.pol.testapplication.Implementation;
+package com.example.pol.testapplication.Implementations;
 
 import android.util.Log;
 
@@ -6,12 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.pol.testapplication.Interface.DataProviderService;
+import com.example.pol.testapplication.Interfaces.DataProviderService;
 import com.example.pol.testapplication.JSONParser;
 import com.example.pol.testapplication.Oompa;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by pol on 7/22/17.

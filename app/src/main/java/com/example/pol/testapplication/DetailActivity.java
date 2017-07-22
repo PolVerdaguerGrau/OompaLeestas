@@ -1,19 +1,24 @@
 package com.example.pol.testapplication;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.example.pol.testapplication.Interface.OompaRegistrationService;
+import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
+import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -33,18 +38,35 @@ public class DetailActivity extends AppCompatActivity {
 
         oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
 
-        List<String> items = new ArrayList<>();
+/*        List<String> items = new ArrayList<>();
 
         Set<String> keySet = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
         for (String id : keySet) {
             items.add(oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
-        }
-        //TODO: Populate the textfields with the information retrieved from the oompaRegistration but it must be a service already instantiated.
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        }*/
 
-        ListView listView = (ListView) findViewById(R.id.list_item);
-        listView.setAdapter(itemsAdapter);
+        Map<String, String> information = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id")));
+
+        LinearLayout layout = (LinearLayout) findViewById(R.id.detail_layout);
+
+
+        TextView textview2 = new TextView(this);
+        textview2.setText(information.get("first_name"));
+        textview2.setPadding(0, 200, 5, 60);
+        layout.addView(textview2);
+
+        URL url = null;
+        try {
+            url = new URL(information.get("image"));
+            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            ImageView imageView = new ImageView(this);
+            imageView.setImageBitmap(bmp);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

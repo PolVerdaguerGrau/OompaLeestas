@@ -1,4 +1,4 @@
-package com.example.pol.testapplication.Interface;
+package com.example.pol.testapplication.Interfaces;
 
 import com.example.pol.testapplication.Oompa;
 

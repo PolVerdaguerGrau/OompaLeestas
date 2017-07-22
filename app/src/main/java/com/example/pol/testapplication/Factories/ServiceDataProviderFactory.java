@@ -1,7 +1,7 @@
-package com.example.pol.testapplication;
+package com.example.pol.testapplication.Factories;
 
-import com.example.pol.testapplication.Implementation.DataProviderFromJsonLocal;
-import com.example.pol.testapplication.Interface.DataProviderService;
+import com.example.pol.testapplication.Implementations.DataProviderFromJsonLocal;
+import com.example.pol.testapplication.Interfaces.DataProviderService;
 
 /**
  * Created by pol on 7/22/17.
