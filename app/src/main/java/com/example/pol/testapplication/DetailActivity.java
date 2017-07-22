@@ -35,7 +35,6 @@ public class DetailActivity extends AppCompatActivity {
 
         List<String> items = new ArrayList<>();
 
-        int idToLookFor = Integer.valueOf(getIntent().getStringExtra("id"));
         Set<String> keySet = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
         for (String id : keySet) {
             items.add(oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
