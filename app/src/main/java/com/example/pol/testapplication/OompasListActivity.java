@@ -1,13 +1,12 @@
 package com.example.pol.testapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -33,11 +32,11 @@ public class OompasListActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         ArrayList<String> items = new ArrayList<>();
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 50; ++i)
             items.add(String.valueOf(i));
 
         TableLayout tl=(TableLayout)findViewById(R.id.main_table);
-        for(String num : items) {
+        for(final String num : items) {
             TableRow tr1 = new TableRow(this);
             tr1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
@@ -55,6 +54,16 @@ public class OompasListActivity extends AppCompatActivity {
             textview3.setText("JOAN@asdfasd.com");
             textview3.setPadding(5, 60, 5, 20);
             tr1.addView(textview3);
+            tr1.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent i = new Intent(getBaseContext(), DetailActivity.class);
+                    i.putExtra("id", num);
+                    startActivity(i);
+                }
+            });
             tl.addView(tr1, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
 
