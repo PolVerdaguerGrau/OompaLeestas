@@ -18,9 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import roboguice.RoboGuice;
+import javax.inject.Inject;
 
 public class DetailActivity extends AppCompatActivity {
+
+     OompaRegistrationService oompaRegistrationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +34,16 @@ public class DetailActivity extends AppCompatActivity {
         //TextView textView = (TextView) findViewById(R.id.oompaID);
         //textView.setText(getIntent().getStringExtra("id"));
 
-        //// TODO: 7/22/17 This get instance is bad because it should use an agent to retrieve the implementation or either make that a singleton
-        OompaRegistrationService oompaService = RoboGuice.getInjector(getContext())
-                .getInstance(OompaRegistrationImpl.class);
+        //// TODO: 7/22/17 Now this uses a singleton but it should be using injection
 
-
+        oompaRegistrationService = ServiceFactory.getLocalService();
 
         List<String> items = new ArrayList<>();
 
-        oompaService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id")));
-        Set<String> keySet = oompaService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
+        oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id")));
+        Set<String> keySet = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
         for (String id : keySet) {
-            items.add(oompaService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
+            items.add(oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
         }
         //TODO: Populate the textfields with the information retrieved from the oompaRegistration but it must be a service already instantiated.
         ArrayAdapter<String> itemsAdapter =

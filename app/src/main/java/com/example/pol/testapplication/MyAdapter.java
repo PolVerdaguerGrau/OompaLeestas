@@ -1,3 +1,4 @@
+/*
 package com.example.pol.testapplication;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
@@ -33,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public MyAdapter() {
-        mSortedList = new SortedList<>(Oompa.class, new SortedListAdapterCallback<Oompa>(this) {
+        //mSortedList = new SortedList<>(Oompa.class, new SortedListAdapterCallback<Oompa>(this) {
             @Override
             public int compare(Oompa o1, Oompa o2) {
                 //This gets called to find the ordering between objects in the array.
@@ -117,4 +118,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void removeModelAt(int i) {
         mSortedList.removeItemAt(i);
     }
-}
+}*/
