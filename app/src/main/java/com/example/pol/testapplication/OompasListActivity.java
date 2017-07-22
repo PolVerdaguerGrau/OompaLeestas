@@ -63,17 +63,17 @@ public class OompasListActivity extends AppCompatActivity {
 
         TextView textview = new TextView(this);
         textview.setText("Name");
-        textview.setPadding(40, 30, 5, 20);
+        textview.setPadding(50, 30, 5, 60);
         firstRow.addView(textview);
 
         TextView textview2 = new TextView(this);
         textview2.setText("Gender");
-        textview2.setPadding(5, 30, 5, 20);
+        textview2.setPadding(0, 30, 5, 60);
         firstRow.addView(textview2);
 
         TextView textview3 = new TextView(this);
         textview3.setText("Profession");
-        textview3.setPadding(5, 30, 5, 20);
+        textview3.setPadding(0, 30, 5, 60);
         firstRow.addView(textview3);
         return firstRow;
     }
@@ -83,17 +83,17 @@ public class OompasListActivity extends AppCompatActivity {
 
         TextView textview = new TextView(this);
         textview.setText(oompaFeed.get(id).get("first_name") + " " + oompaFeed.get(id).get("last_name"));
-        textview.setPadding(40, 30, 5, 20);
+        textview.setPadding(50, 30, 5, 20);
         tr1.addView(textview);
 
         TextView textview2 = new TextView(this);
         textview2.setText(oompaFeed.get(id).get("gender"));
-        textview2.setPadding(5, 30, 5, 20);
+        textview2.setPadding(0, 30, 5, 20);
         tr1.addView(textview2);
 
         TextView textview3 = new TextView(this);
         textview3.setText(oompaFeed.get(id).get("profession"));
-        textview3.setPadding(5, 30, 5, 20);
+        textview3.setPadding(0, 30, 5, 20);
         tr1.addView(textview3);
         tr1.setOnClickListener(new View.OnClickListener() {
             @Override
