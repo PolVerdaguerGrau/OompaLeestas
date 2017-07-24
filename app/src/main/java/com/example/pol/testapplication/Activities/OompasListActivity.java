@@ -1,4 +1,4 @@
-package com.example.pol.testapplication;
+package com.example.pol.testapplication.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
 import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
+import com.example.pol.testapplication.R;
 
 import java.util.Map;
 import java.util.Set;

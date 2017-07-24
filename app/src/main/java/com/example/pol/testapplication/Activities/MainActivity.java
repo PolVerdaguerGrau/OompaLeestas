@@ -1,30 +1,18 @@
-package com.example.pol.testapplication;
+package com.example.pol.testapplication.Activities;
 
 import java.util.ArrayList;
-import java.util.Map;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
 import com.example.pol.testapplication.Factories.ServiceDataProviderFactory;
 import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
 import com.example.pol.testapplication.Interfaces.DataProviderService;
-import com.example.pol.testapplication.Interfaces.ImageRetrieverService;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
+import com.example.pol.testapplication.Oompa;
+import com.example.pol.testapplication.R;
 
 public class MainActivity extends Activity {
 
@@ -55,6 +43,7 @@ public class MainActivity extends Activity {
         protected void onPostExecute(String results) {
             Intent i = new Intent(getBaseContext(), OompasListActivity.class);
             startActivity(i);
+            finish();
         }
     }
 }

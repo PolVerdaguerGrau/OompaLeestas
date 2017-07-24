@@ -1,4 +1,4 @@
-package com.example.pol.testapplication;
+package com.example.pol.testapplication.Activities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +17,7 @@ import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
 import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
 import com.example.pol.testapplication.Interfaces.ImageRetrieverService;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
+import com.example.pol.testapplication.R;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,11 +32,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        //TextView textView = (TextView) findViewById(R.id.oompaID);
-        //textView.setText(getIntent().getStringExtra("id"));
 
         //// TODO: 7/22/17 Now this uses a singleton but it should be using injection
 
@@ -48,13 +44,14 @@ public class DetailActivity extends AppCompatActivity {
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.detail_layout);
 
+        //TODO: this should be refactored into mathods
 
         TextView textview2 = new TextView(this);
         textview2.setText(information.get("first_name"));
         Log.d("TextSize", String.valueOf(textview2.getTextSize()));
         textview2.setTextSize(textview2.getTextSize() * 1.2f);
         textview2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        textview2.setPadding(0, 200, 100, 20);
+        textview2.setPadding(0, 50, 100, 20);
         layout.addView(textview2);
 
         TextView lastNameView = new TextView(this);
@@ -94,14 +91,5 @@ public class DetailActivity extends AppCompatActivity {
         emailView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         emailView.setPadding(0, 0, 0, 50);
         layout.addView(emailView);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 }

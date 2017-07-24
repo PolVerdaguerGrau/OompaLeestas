@@ -5,32 +5,14 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
-import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
-import com.example.pol.testapplication.Factories.ServiceDataProviderFactory;
-import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
-import com.example.pol.testapplication.Interfaces.DataProviderService;
 import com.example.pol.testapplication.Interfaces.ImageRetrieverService;
-import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
-import com.example.pol.testapplication.Oompa;
-import com.example.pol.testapplication.R;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by pol on 7/22/17.
@@ -119,7 +101,7 @@ public class ImageRetrieverImpl implements ImageRetrieverService {
             try {
                 loadImagesInBackground(urls);
             }catch (OutOfMemoryError e) {
-                
+
             }
             return text;
         }
