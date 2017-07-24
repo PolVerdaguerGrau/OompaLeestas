@@ -26,33 +26,14 @@ import com.example.pol.testapplication.Interfaces.DataProviderService;
 import com.example.pol.testapplication.Interfaces.ImageRetrieverService;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity {
 
     private ArrayList<Oompa> oompas;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        findViewById(R.id.my_button).setOnClickListener(this);
         new LongRunningGetIO().execute();
-        //TODO treure aquesta xapussa dáqui
-        try {
-            Log.d("time", "AAAA");
-            Thread.sleep(10000);
-            Log.d("time", "BBBBB");
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Intent i = new Intent(this, OompasListActivity.class);
-        startActivity(i);
-    }
-
-    @Override
-    public void onClick(View arg0) {
-        Button b = (Button) findViewById(R.id.my_button);
-        b.setClickable(false);
-
     }
 
     private class LongRunningGetIO extends AsyncTask<Void, Void, String> {
@@ -72,12 +53,8 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
         protected void onPostExecute(String results) {
-            if (results != null) {
-                EditText et = (EditText) findViewById(R.id.my_edit);
-                et.setText(results);
-            }
-            Button b = (Button) findViewById(R.id.my_button);
-            b.setClickable(true);
+            Intent i = new Intent(getBaseContext(), OompasListActivity.class);
+            startActivity(i);
         }
     }
 }
