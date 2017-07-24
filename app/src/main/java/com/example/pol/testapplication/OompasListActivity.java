@@ -23,10 +23,6 @@ public class OompasListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oompas_list);
-        //setContentView(R.layout.content_oompas_list);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
 
         oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
 

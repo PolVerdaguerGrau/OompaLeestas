@@ -9,8 +9,6 @@ import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 public class ServiceRegistrationFactory {
     private ServiceRegistrationFactory() {}
 
-    private OompaRegistrationService service;
-
     public static OompaRegistrationService getLocalService(){
         return OompaRegistrationImpl.getInstance();
     }

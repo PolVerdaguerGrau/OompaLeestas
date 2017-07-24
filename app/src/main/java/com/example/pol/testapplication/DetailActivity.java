@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
 import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
+import com.example.pol.testapplication.Interfaces.ImageRetrieverService;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
-     OompaRegistrationService oompaRegistrationService;
+    OompaRegistrationService oompaRegistrationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +40,10 @@ public class DetailActivity extends AppCompatActivity {
 
         oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
 
-/*        List<String> items = new ArrayList<>();
+        
 
-        Set<String> keySet = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).keySet();
-        for (String id : keySet) {
-            items.add(oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id"))).get(id));
-        }*/
-
-        Map<String, String> information = oompaRegistrationService.getDetailedInformationById(Integer.valueOf(getIntent().getStringExtra("id")));
+        int id = Integer.valueOf(getIntent().getStringExtra("id"));
+        Map<String, String> information = oompaRegistrationService.getDetailedInformationById(id);
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.detail_layout);
 
@@ -55,18 +53,13 @@ public class DetailActivity extends AppCompatActivity {
         textview2.setPadding(0, 200, 5, 60);
         layout.addView(textview2);
 
-        URL url = null;
-        try {
-            url = new URL(information.get("image"));
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            ImageView imageView = new ImageView(this);
-            imageView.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        ImageRetrieverService imageService = ImageRetrieverFactory.getLocalService();
+        Bitmap image = imageService.getImage(id);
+
+        ImageView imageView = new ImageView(this);
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(image, 120, 120, false));
+        layout.addView(imageView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
