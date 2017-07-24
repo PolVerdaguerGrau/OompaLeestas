@@ -59,12 +59,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
         @Override
         protected String doInBackground(Void... params) {
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpContext localContext = new BasicHttpContext();
-                HttpGet httpGet = new HttpGet("http://www.cheesejedi.com/rest_services/get_big_cheese.php?puzzle=1");
-            String text = "Please wait";
+
+            String text;
             DataProviderService dataProvider = ServiceDataProviderFactory.getLocalService();
-            Log.d("main activity", "This is before entering the data provider");
             oompas = dataProvider.retrieveOompasInformation();
             OompaRegistrationService oompaRegistrator = ServiceRegistrationFactory.getLocalService();
             for(Oompa oompa : oompas) {

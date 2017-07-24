@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,17 +51,49 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView textview2 = new TextView(this);
         textview2.setText(information.get("first_name"));
-        textview2.setTextSize(textview2.getTextSize()*2);
-        textview2.setPadding(0, 200, 5, 60);
+        Log.d("TextSize", String.valueOf(textview2.getTextSize()));
+        textview2.setTextSize(textview2.getTextSize() * 1.2f);
+        textview2.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        textview2.setPadding(0, 200, 100, 20);
         layout.addView(textview2);
 
+        TextView lastNameView = new TextView(this);
+        lastNameView.setText(information.get("last_name"));
+        Log.d("TextSize", String.valueOf(lastNameView.getTextSize()));
+        lastNameView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        lastNameView.setPadding(0, 0, 200, 50);
+        layout.addView(lastNameView);
 
         ImageRetrieverService imageService = ImageRetrieverFactory.getLocalService();
         Bitmap image = imageService.getImage(id);
 
         ImageView imageView = new ImageView(this);
-        imageView.setImageBitmap(Bitmap.createScaledBitmap(image, 240, 240, false));
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(image, 400, 400, false));
+        imageView.setPadding(0, 0, 0, 100);
         layout.addView(imageView);
+
+        TextView professionView = new TextView(this);
+        professionView.setText("Profession:  " + information.get("profession"));
+        Log.d("TextSize", String.valueOf(professionView.getTextSize()));
+        professionView.setTextSize(professionView.getTextSize() * (2f / 3f));
+        professionView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        professionView.setPadding(0, 0, 0, 50);
+        layout.addView(professionView);
+
+        TextView genderView = new TextView(this);
+        genderView.setText("Gender:  " + information.get("gender"));
+        Log.d("TextSize", String.valueOf(genderView.getTextSize()));
+        genderView.setTextSize(genderView.getTextSize() * (2f / 3f));
+        Log.d("TextSize", String.valueOf(genderView.getTextSize()));
+        genderView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        genderView.setPadding(0, 0, 0, 50);
+        layout.addView(genderView);
+
+        TextView emailView = new TextView(this);
+        emailView.setText("Email:  " + information.get("email"));
+        emailView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        emailView.setPadding(0, 0, 0, 50);
+        layout.addView(emailView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

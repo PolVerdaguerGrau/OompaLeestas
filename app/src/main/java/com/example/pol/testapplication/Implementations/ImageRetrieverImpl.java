@@ -116,7 +116,11 @@ public class ImageRetrieverImpl implements ImageRetrieverService {
         @Override
         protected String doInBackground(Void... params) {
             String text = "Please wait";
-            loadImagesInBackground(urls);
+            try {
+                loadImagesInBackground(urls);
+            }catch (OutOfMemoryError e) {
+                
+            }
             return text;
         }
 
