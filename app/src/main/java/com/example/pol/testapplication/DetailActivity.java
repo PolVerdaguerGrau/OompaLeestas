@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
 
         oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
 
-        
+
 
         int id = Integer.valueOf(getIntent().getStringExtra("id"));
         Map<String, String> information = oompaRegistrationService.getDetailedInformationById(id);
@@ -50,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView textview2 = new TextView(this);
         textview2.setText(information.get("first_name"));
+        textview2.setTextSize(textview2.getTextSize()*2);
         textview2.setPadding(0, 200, 5, 60);
         layout.addView(textview2);
 
@@ -58,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
         Bitmap image = imageService.getImage(id);
 
         ImageView imageView = new ImageView(this);
-        imageView.setImageBitmap(Bitmap.createScaledBitmap(image, 120, 120, false));
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(image, 240, 240, false));
         layout.addView(imageView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -38,7 +38,6 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
         profession,email, thumbnail
     }
 
-
     @Override
     public Map<String, String> getDetailedInformationById(int id) {
         Map<String, String> detailedInformation = new HashMap<>();
@@ -104,6 +103,14 @@ public class OompaRegistrationImpl implements OompaRegistrationService {
         oompaPool.put(oompa.getId(), values);
     }
 
+    @Override
+    public Map<Integer,String> getImageUrls() {
+        Map<Integer, String> urls = new HashMap<>();
+        for(int key : oompaPool.keySet()) {
+            urls.put(key, oompaPool.get(key).get("image"));
+        }
+        return urls;
+    }
 
     private Map<Integer, Map<String,String>> getDeepCopyInt(Map<Integer, Map<String,String>> source) {
         Map<Integer, Map<String,String>> copy = new HashMap<>();

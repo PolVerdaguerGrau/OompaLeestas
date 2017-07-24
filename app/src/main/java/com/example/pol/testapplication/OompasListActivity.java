@@ -9,6 +9,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.pol.testapplication.Factories.ImageRetrieverFactory;
 import com.example.pol.testapplication.Factories.ServiceRegistrationFactory;
 import com.example.pol.testapplication.Interfaces.OompaRegistrationService;
 
@@ -25,6 +26,7 @@ public class OompasListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_oompas_list);
 
         oompaRegistrationService = ServiceRegistrationFactory.getLocalService();
+        ImageRetrieverFactory.getLocalService().loadBulkImages(oompaRegistrationService.getImageUrls());
 
         Map<Integer, Map<String, String>> oompaFeed = oompaRegistrationService.getBriefInformation();
         Set<Integer> keySet = oompaFeed.keySet();

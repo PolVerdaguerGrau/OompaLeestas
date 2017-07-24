@@ -12,7 +12,10 @@ public interface OompaRegistrationService {
 
      Map<Integer, Map<String, String>> getBriefInformation();
 
+     Map<Integer, String> getImageUrls();
      void registerOompa(Oompa oompa);
     //this should be done with proper constructors
      void registerOompa(String name, String lastName, int id, String email, Character gender, String profession, String thumbnail, String imageUrl);
+
+
 }

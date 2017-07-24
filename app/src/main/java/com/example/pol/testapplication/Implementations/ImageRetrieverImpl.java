@@ -94,7 +94,7 @@ public class ImageRetrieverImpl implements ImageRetrieverService {
         new ImageThread(imageUrls).execute();
     }
 
-    private void loadIImagesInBackground(Map<Integer, String> imageUrls) {
+    private void loadImagesInBackground(Map<Integer, String> imageUrls) {
         loadDefaultImage();
         for(int key : imageUrls.keySet()) {
             loadImage(key, imageUrls.get(key));
@@ -116,13 +116,12 @@ public class ImageRetrieverImpl implements ImageRetrieverService {
         @Override
         protected String doInBackground(Void... params) {
             String text = "Please wait";
-            ImageRetrieverService imageRetrieverService = ImageRetrieverFactory.getLocalService();
-            imageRetrieverService.loadBulkImages(urls);
+            loadImagesInBackground(urls);
             return text;
         }
 
         protected void onPostExecute(String results) {
-
+            Log.d("images retrieved!", "all images have been loaded");
         }
     }
 }
