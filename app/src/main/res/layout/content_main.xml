@@ -3,11 +3,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/mainLayout">
 
-<TextView
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Please wait, we are loading the information for you :)" />
+        android:text="Loading"
+        android:id="@+id/loading"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity = "center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Please wait :)"
+        android:id="@+id/wait"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="It should not take long"
+        android:id="@+id/takeLong"/>
 </LinearLayout>
